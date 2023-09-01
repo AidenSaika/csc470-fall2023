@@ -1,0 +1,4 @@
+repository "New one@saikamatoi@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
