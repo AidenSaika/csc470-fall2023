@@ -1,0 +1,4 @@
+repository "Assignment2_Basics@saikamatoi@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
