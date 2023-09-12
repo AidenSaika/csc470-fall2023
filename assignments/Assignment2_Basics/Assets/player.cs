@@ -26,28 +26,28 @@ public class player : MonoBehaviour
         }
 
         
-        if (transform.position.x > 5.2)
+        if (transform.position.x > 5.25)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                transform.Translate(Vector3.right * speed1 * Time.deltaTime);
+                transform.Translate(Vector3.back * speed1 * Time.deltaTime);
             }
         }
      
          
         if (Input.GetKey(KeyCode.DownArrow))  
         {
-           transform.Translate(Vector3.left * speed1 * Time.deltaTime);
-        }  
-         
+           transform.Translate(Vector3.forward * speed1 * Time.deltaTime);
+        }
+        
         if (Input.GetKey(KeyCode.LeftArrow))  
         {
-           transform.Translate(Vector3.back * speed1 * Time.deltaTime);
+           transform.Translate(Vector3.left * speed1 * Time.deltaTime);
         }  
         
         if (Input.GetKey(KeyCode.RightArrow))  
         {
-           transform.Translate(Vector3.forward * speed1 * Time.deltaTime);
+           transform.Translate(Vector3.right * speed1 * Time.deltaTime);
         }  
 
         if (Input.GetKey(KeyCode.Space))
@@ -57,7 +57,7 @@ public class player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) == false)
         {
                 transform.rotation = Quaternion.identity;
-                transform.Rotate(0, 0, -180);
+                transform.Rotate(0, 90, -180);
         }
 
 
