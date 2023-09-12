@@ -52,7 +52,7 @@ public class player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            transform.Rotate(Vector3.back, speed);
+            transform.Rotate(Vector3.left, speed);
         }
         if (Input.GetKey(KeyCode.Space) == false)
         {
