@@ -58,7 +58,7 @@ public class prefab : MonoBehaviour
     void generateCrystal()
     {
         float Cx = Random.Range(0, 1.3f);
-        float Cy = Random.Range(7.39f,13);
+        float Cy = Random.Range(7.39f,20);
         float Cz = Random.Range(-1.8f, 1.81f);
 
         Vector3 CrystalV = new Vector3(Cx, Cy, Cz);
