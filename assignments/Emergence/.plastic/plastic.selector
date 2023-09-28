@@ -1,0 +1,4 @@
+repository "Emergence@saikamatoi@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
