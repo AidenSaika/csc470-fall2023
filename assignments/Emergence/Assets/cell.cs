@@ -42,26 +42,41 @@ public class cell : MonoBehaviour
     
     private void OnMouseDown()
     {
+        //print(x + ", " + y);
         alive = !alive;
         UpdateColor();
-        //Debug.Log(x + ", " + y + "alive: " + alive);
-        Debug.Log(CountLive());
+        
+        print(CountLive(x,y));
     }
-    int CountLive()
+    public int CountLive(int X, int Y)
     {
-        int alive = 0;
-        for (int xIndex = x - 1; xIndex <= x+1; xIndex++)
+        int aliveN = 0;
+        for (int xIndex = X - 1; xIndex <= X+1;  xIndex++)
         {
-            for (int yIndex = y - 1; yIndex <= y + 1; yIndex++)
+            if (0 <= xIndex && xIndex < 20)
             {
-                if(GOL.cells[xIndex, yIndex].alive)
+                for (int yIndex = Y + 1; yIndex >= Y - 1; yIndex--)
                 {
-                    alive++;
+                    if (0 <= yIndex && yIndex < 20)
+                    {
+                        if (GOL.cells[xIndex, yIndex].alive)
+                        {
+                            if (xIndex == X && yIndex == Y)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                aliveN++;
+                            }
+                        }
+                    }
+                    else { continue; }
                 }
             }
+            else { continue; }
         } 
-
-        return alive;
+        return aliveN;
     }
 
 }
