@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19aa66aef7b88094e8db774600af113e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 0
+  x: -1
+  y: -1
+  aliveC: {r: 0.8757689, g: 0.9528302, b: 0.31161734, a: 0}
+  deadC: {r: 0.9356929, g: 0.44968545, b: 1, a: 0}
+  rend: {fileID: 0}
 --- !u!1 &3735215089330232297
 GameObject:
   m_ObjectHideFlags: 0
