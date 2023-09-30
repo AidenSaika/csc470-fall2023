@@ -19,7 +19,6 @@ public class cell : MonoBehaviour
         GOL = GOLobj.GetComponent<GameOfLife>();
         rend = gameObject.GetComponentInChildren<Renderer>();
         UpdateColor();
-
     }
 
     // Update is called once per frame
@@ -33,10 +32,52 @@ public class cell : MonoBehaviour
         if (alive)
         {
             rend.material.color = aliveC;
+
+            rend.material.SetColor("_EmissionColor", Color.yellow);
+            rend.material.SetFloat("_EmissionIntensity", 9.0f);
+
+
+
         }
         else
         {
             rend.material.color = deadC;
+            rend.material.SetColor("_EmissionColor", Color.blue);
+
+
+        }
+    }
+
+    public void UpdateScale(float speed)
+    {
+        float currentHeight = transform.localScale.y;
+
+        if (alive)
+        {
+
+            float newHeight = currentHeight + (Time.deltaTime * speed);
+
+            if (newHeight<=5){
+
+                transform.localScale = new Vector3(1, newHeight, 1);
+                Vector3 newPosition = transform.position;
+                newPosition.y = transform.position.y + (newHeight - currentHeight) / 2.0f;
+                transform.position = newPosition;
+            }
+
+
+        }
+        else
+        {
+            float newHeight = currentHeight - (Time.deltaTime * speed);
+
+            if (newHeight>=1){
+                transform.localScale = new Vector3(1, newHeight, 1);
+                Vector3 newPosition = transform.position;
+                newPosition.y = transform.position.y - (currentHeight- newHeight) / 2.0f;
+                transform.position = newPosition;
+            }
+           
         }
     }
     

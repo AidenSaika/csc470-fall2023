@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 64cd34a0e3a196543b44dba05769f4eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,6 +153,6 @@ MonoBehaviour:
   alive: 0
   x: -1
   y: -1
-  aliveC: {r: 0.9488097, g: 1, b: 0.50628924, a: 0}
-  deadC: {r: 0.23050901, g: 0.26485932, b: 0.990566, a: 0}
+  aliveC: {r: 0.91278785, g: 0.9433962, b: 0.64673066, a: 0}
+  deadC: {r: 0.33193895, g: 0.3458628, b: 0.6320754, a: 0}
   rend: {fileID: 0}
