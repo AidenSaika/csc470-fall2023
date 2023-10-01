@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOfLife : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class GameOfLife : MonoBehaviour
     public float showingTime;
     public float Timecount=0;
     public float Gspeed = 5f;
+    public float Gspeed2 = 5f;
     public bool startG = false;
+    public TMP_Text GspeedText;
+    public TMP_Text Gspeed2Text;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,9 @@ public class GameOfLife : MonoBehaviour
     {
         showingTime = 1;
 
+        GspeedText.text = Gspeed.ToString();
+        Gspeed2Text.text = Gspeed2.ToString();
+
         if (startG)
         {
             if (Timecount < showingTime)
@@ -49,7 +56,7 @@ public class GameOfLife : MonoBehaviour
             else
             {
                 Timecount = 0;
-                UpdateMap();
+                UpdateMap(Gspeed2);
 
             }
         }
@@ -84,7 +91,7 @@ public class GameOfLife : MonoBehaviour
         return tempview;
     }
 
-    public cell[,] UpdateMap()
+    public cell[,] UpdateMap(float Gspeed2)
     {
         int[,] tempview = new int[20, 20];
 
@@ -118,7 +125,7 @@ public class GameOfLife : MonoBehaviour
                     cells[i, j].alive = false;
                 }
                 cells[i, j].UpdateColor();
-                cells[i, j].UpdateScale(Gspeed);
+                cells[i, j].UpdateScale(Gspeed2);
             }
         }
 
@@ -137,6 +144,21 @@ public class GameOfLife : MonoBehaviour
         if (Gspeed >1)
         {
             Gspeed--;
+        }
+    }
+
+    public void Plus2ButtonClicked()
+    {
+        if (Gspeed2 < 10)
+        {
+            Gspeed2++;
+        }
+    }
+    public void M2ButtonClicked()
+    {
+        if (Gspeed2 > 1)
+        {
+            Gspeed2--;
         }
     }
 

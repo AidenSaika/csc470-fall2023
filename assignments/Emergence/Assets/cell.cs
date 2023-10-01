@@ -43,7 +43,7 @@ public class cell : MonoBehaviour
         {
             rend.material.color = deadC;
             rend.material.SetColor("_EmissionColor", Color.blue);
-
+            rend.material.SetFloat("_EmissionIntensity", 1.0f);
 
         }
     }
