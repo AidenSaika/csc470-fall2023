@@ -18,7 +18,7 @@ public class Body_Move : MonoBehaviour
     public GameObject Key;
 
     public static bool BodygetKey = false;
-
+    public static bool BodygetMIMIKey = false;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +91,20 @@ public class Body_Move : MonoBehaviour
         if (other.CompareTag("out"))
         {
             Debug.Log("End");
+        }
+        if (other.CompareTag("speedup"))
+        {
+            aircraft.CurrentRemain += 1;
+            print(aircraft.CurrentRemain);
+            aircraft.getSpeedUP = true;
+        }
+        if (other.CompareTag("Mimi_key"))
+        {
+            BodygetMIMIKey = true;
+        }
+        if (other.CompareTag("mimiout"))
+        {
+            Debug.Log("MIMIEnd");
         }
     }
 

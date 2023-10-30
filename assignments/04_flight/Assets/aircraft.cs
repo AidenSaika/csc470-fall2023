@@ -9,22 +9,32 @@ public class aircraft : MonoBehaviour
     float zRotationSpeed = 40f;
     float accSpeed = 0;
     float accSpeed2 = 0;
-    bool  CameraChange = false;
-
-    public CharacterController cc;
     float gravityModifier = 0.05f;
     float yVelocity = 0;
+    public static float CurrentRemain;
 
+    bool CameraChange = false;
+
+    public CharacterController cc;
     public GameObject cameraObject;
     public GameObject fan;
     public GameObject Key;
 
+
     public static bool AirgetKey = false;
+    public static bool getSpeedUP = false;
+    public static bool AirgetMIMIKey = false;
+    
+
+    GameManager Mana;
 
     // Start is called before the first frame update
     void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
+        GameObject ManaOBJ = GameObject.Find("GameManager");
+        Mana = ManaOBJ.GetComponent<GameManager>();
+        CurrentRemain = Mana.GCountSPEEDup;
 
     }
 
@@ -34,11 +44,11 @@ public class aircraft : MonoBehaviour
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&& CurrentRemain>0)
         {
 
             accSpeed = 20 ;
-            
+            CurrentRemain -= 1;
         }
             
         accSpeed -= 5 * Time.deltaTime;
@@ -105,9 +115,23 @@ public class aircraft : MonoBehaviour
         {
             AirgetKey = true;
         }
+        if (other.CompareTag("Mimi_key"))
+        {
+            AirgetMIMIKey = true;
+        }
         if (other.CompareTag("out"))
         {
             Debug.Log("End");
+        }
+        if (other.CompareTag("speedup"))
+        {
+            CurrentRemain += 1;
+            print(CurrentRemain);
+            getSpeedUP = true;
+        }
+        if (other.CompareTag("mimiout"))
+        {
+            Debug.Log("MIMIEnd");
         }
     }
 }

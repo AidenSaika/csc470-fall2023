@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,25 +12,57 @@ public class GameManager : MonoBehaviour
     public GameObject Key;
     public GameObject Door;
     public GameObject Out;
+    public GameObject Up;
+    public GameObject MIMI_DOOR;
+    public GameObject MIMI_OUT;
+    public GameObject MIMI_KEY;
 
     bool IsPlane = false;
     bool IsHuman = false;
     bool MoveChange = false;
     bool getKey = false;
+    bool getmiKey = false;
     bool isOut = false;
+    bool FirstGenerate = true;
+    bool isOutMI = false;
+
+    public float GCountSPEEDup =0f;
+    float CountShow = 0f;
+
+    public TMP_Text Speedup;
+    public TMP_Text SpeedCount;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        GCountSPEEDup = 2f;
         CurrentOBJ = generateBeginingHuman();
         IsPlane = false;
         TheKey();
         TheDoor();
+        TheUp();
+        TheMIMIDOOR();
+        TheMIMIKEY();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CountShow = GCountSPEEDup;
+
+        SpeedCount.text = CountShow.ToString();
+
+        GCountSPEEDup = aircraft.CurrentRemain;
+        
+        if(CountShow == 0 && FirstGenerate){
+            GCountSPEEDup = GCountSPEEDup + 2;
+            FirstGenerate = false;
+
+        }
+        
+
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             MoveChange = !MoveChange;
@@ -69,6 +102,23 @@ public class GameManager : MonoBehaviour
 
         }
 
+        if (aircraft.getSpeedUP)
+        {
+            Destroy(Up);
+        }
+
+        ISgetMIMIkey();
+        if (getmiKey)
+        {
+            Destroy(MIMI_KEY);
+            Destroy(MIMI_DOOR);
+            if (!isOutMI)
+            {
+                TheMIMIOUT();
+                isOutMI = !isOutMI;
+            }
+        }
+
     }
 
 
@@ -106,6 +156,15 @@ public class GameManager : MonoBehaviour
         return Key;
     }
 
+    GameObject TheMIMIKEY()
+    {
+        Vector3 pos = new Vector3(  19.76f, 5.538062f, 142.56f);
+        MIMI_KEY = Instantiate(MIMI_KEY, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        MIMI_KEY.transform.Rotate(Rotate);
+        return MIMI_KEY;
+    }
+
     GameObject TheDoor()
     {
         Vector3 pos = new Vector3(7.5f, -25.8f, -31f);
@@ -123,6 +182,32 @@ public class GameManager : MonoBehaviour
         return Out;
     }
 
+    GameObject TheUp()
+    {
+        Vector3 pos = new Vector3(-3.41f, 0.93f, 21.82f);
+        Up = Instantiate(Up, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        Up.transform.Rotate(Rotate);
+        return Up;
+    }
+
+    GameObject TheMIMIDOOR()
+    {
+        Vector3 pos = new Vector3(-23.75f, -23.46f, -23.66f);
+        MIMI_DOOR = Instantiate(MIMI_DOOR, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, -92f, 0);
+        MIMI_DOOR.transform.Rotate(Rotate);
+        return MIMI_DOOR;
+    }
+    GameObject TheMIMIOUT()
+    {
+        Vector3 pos = new Vector3(-23.39529f, -25.96094f, -14.3338f);
+        MIMI_OUT = Instantiate(MIMI_OUT, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        MIMI_OUT.transform.Rotate(Rotate);
+        return MIMI_OUT;
+    }
+
 
     void ISgetkey()
     {
@@ -132,6 +217,16 @@ public class GameManager : MonoBehaviour
             Debug.Log("key");
         }
     }
-        
+
+    void ISgetMIMIkey()
+    {
+        if (aircraft.AirgetMIMIKey || Body_Move.BodygetMIMIKey)
+        {
+            getmiKey = true;
+        }
+    }
+
+
+
 
 }
