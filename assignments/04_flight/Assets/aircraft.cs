@@ -104,7 +104,10 @@ public class aircraft : MonoBehaviour
         if (other.CompareTag("key"))
         {
             AirgetKey = true;
-            Destroy(Key);
+        }
+        if (other.CompareTag("out"))
+        {
+            Debug.Log("End");
         }
     }
 }

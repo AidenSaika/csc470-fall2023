@@ -87,7 +87,10 @@ public class Body_Move : MonoBehaviour
         if (other.CompareTag("key"))
         {
             BodygetKey = true;
-            Destroy(Key);
+        }
+        if (other.CompareTag("out"))
+        {
+            Debug.Log("End");
         }
     }
 

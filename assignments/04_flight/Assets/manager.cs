@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
     public GameObject human;
     public GameObject CurrentOBJ;
     public GameObject Key;
+    public GameObject Door;
+    public GameObject Out;
 
     bool IsPlane = false;
     bool IsHuman = false;
     bool MoveChange = false;
-
     bool getKey = false;
+    bool isOut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
         CurrentOBJ = generateBeginingHuman();
         IsPlane = false;
         TheKey();
+        TheDoor();
     }
 
     // Update is called once per frame
@@ -57,6 +60,13 @@ public class GameManager : MonoBehaviour
         if (getKey)
         {
             Destroy(Key);
+            Destroy(Door);
+            if (!isOut)
+            {
+                TheOut();
+                isOut = !isOut;
+            }
+
         }
 
     }
@@ -96,6 +106,22 @@ public class GameManager : MonoBehaviour
         return Key;
     }
 
+    GameObject TheDoor()
+    {
+        Vector3 pos = new Vector3(7.5f, -25.8f, -31f);
+        Door = Instantiate(Door, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        Door.transform.Rotate(Rotate);
+        return Door;
+    }
+    GameObject TheOut()
+    {
+        Vector3 pos = new Vector3(33.23837f, -23.51944f, -256.9805f);
+        Out = Instantiate(Out, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        Out.transform.Rotate(Rotate);
+        return Out;
+    }
 
 
     void ISgetkey()
