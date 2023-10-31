@@ -30,9 +30,13 @@ public class GameManager : MonoBehaviour
     public float GCountSPEEDup =0f;
     float CountShow = 0f;
     float CoinCllect;
+    float GetKeyCount = 0f;
+    float GetSKeyCount = 0f;
 
     public TMP_Text CoinText;
     public TMP_Text SpeedCount;
+    public TMP_Text GetKeyText;
+    public TMP_Text GetSKeyText;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +54,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (getKey)
+        {
+            GetKeyCount = 1;
+        }
+        if (getmiKey)
+        {
+            GetSKeyCount = 1;
+        }
+        GetKeyText.text = GetKeyCount.ToString();
+
+        GetSKeyText.text = GetSKeyCount.ToString();
+
         CountShow = GCountSPEEDup;
 
         SpeedCount.text = CountShow.ToString();
