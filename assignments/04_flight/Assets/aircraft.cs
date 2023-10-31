@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class aircraft : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class aircraft : MonoBehaviour
     float accSpeed2 = 0;
     float gravityModifier = 0.05f;
     float yVelocity = 0;
+    float Thespeed;
     public static float CurrentRemain;
+    public static float AirGetCoin;
 
     bool CameraChange = false;
 
@@ -24,7 +27,10 @@ public class aircraft : MonoBehaviour
     public static bool AirgetKey = false;
     public static bool getSpeedUP = false;
     public static bool AirgetMIMIKey = false;
-    
+
+    public string End1;
+
+
 
     GameManager Mana;
 
@@ -57,28 +63,43 @@ public class aircraft : MonoBehaviour
 
         forwardSpeed -= 1.5f * Time.deltaTime;
         forwardSpeed = Mathf.Max(0, forwardSpeed);
-    
+
+        Thespeed = forwardSpeed + accSpeed + accSpeed2;
 
         float XRotation = -vAxis * xRotationSpeed * Time.deltaTime;
         float ZRotation = -hAxis * zRotationSpeed * Time.deltaTime;
         transform.Rotate(-XRotation, 0, ZRotation, Space.Self);
-        gameObject.transform.position += gameObject.transform.forward* Time.deltaTime * (forwardSpeed + accSpeed + accSpeed2);
+        gameObject.transform.position += gameObject.transform.forward* Time.deltaTime * (Thespeed);
 
-        if (!cc.isGrounded)
+
+
+
+        if (!cc.isGrounded && (forwardSpeed + accSpeed + accSpeed2)<=8)
         {
-            yVelocity = gravityModifier;
+            if ((forwardSpeed + accSpeed + accSpeed2) <= 6)
+            {
+                yVelocity += 4 * gravityModifier * Time.deltaTime;
+            }
+            else
+            {
+                yVelocity += gravityModifier * Time.deltaTime;
+            }
         }
-        else
-        {
+        if (cc.isGrounded) { 
             yVelocity = 0;
         }
 
-        Vector3 amountToMove = gameObject.transform.forward * (forwardSpeed + accSpeed + accSpeed2);
+        print(Thespeed);
+
+        Vector3 amountToMove = gameObject.transform.forward * (Thespeed);
  
         cc.Move(amountToMove * Time.deltaTime);
 
         Vector3 currentPosition = transform.position;
-        currentPosition.y -= yVelocity;
+        if (currentPosition.y > -24f)
+        {
+            currentPosition.y -= yVelocity;
+        }
         transform.position = currentPosition;
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -121,6 +142,7 @@ public class aircraft : MonoBehaviour
         }
         if (other.CompareTag("out"))
         {
+            SceneManager.LoadScene(End1);
             Debug.Log("End");
         }
         if (other.CompareTag("speedup"))
@@ -131,7 +153,11 @@ public class aircraft : MonoBehaviour
         }
         if (other.CompareTag("mimiout"))
         {
-            Debug.Log("MIMIEnd");
+            SceneManager.LoadScene("End2");
+        }
+        if (other.CompareTag("coin"))
+        {
+            AirGetCoin += 1;
         }
     }
 }

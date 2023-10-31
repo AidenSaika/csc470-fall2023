@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
@@ -25,17 +25,18 @@ public class GameManager : MonoBehaviour
     bool isOut = false;
     bool FirstGenerate = true;
     bool isOutMI = false;
+    public static bool GetBUTTON = false;
 
     public float GCountSPEEDup =0f;
     float CountShow = 0f;
+    float CoinCllect;
 
-    public TMP_Text Speedup;
+    public TMP_Text CoinText;
     public TMP_Text SpeedCount;
 
     // Start is called before the first frame update
     void Start()
     {
-
         GCountSPEEDup = 2f;
         CurrentOBJ = generateBeginingHuman();
         IsPlane = false;
@@ -54,8 +55,13 @@ public class GameManager : MonoBehaviour
         SpeedCount.text = CountShow.ToString();
 
         GCountSPEEDup = aircraft.CurrentRemain;
-        
-        if(CountShow == 0 && FirstGenerate){
+
+        CoinGET();
+
+        CoinText.text = CoinCllect.ToString();
+
+
+        if (CountShow == 0 && FirstGenerate){
             GCountSPEEDup = GCountSPEEDup + 2;
             FirstGenerate = false;
 
@@ -224,6 +230,11 @@ public class GameManager : MonoBehaviour
         {
             getmiKey = true;
         }
+    }
+
+    void CoinGET()
+    {
+        CoinCllect = aircraft.AirGetCoin + Body_Move.BodyGetCoin;
     }
 
 

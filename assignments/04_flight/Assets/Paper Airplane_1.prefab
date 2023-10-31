@@ -102,15 +102,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: bb67e26a513937340a70f1fff42eb3c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7167683
+      value: -5.9439526
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb67e26a513937340a70f1fff42eb3c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16092968
+      value: -0.16093254
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb67e26a513937340a70f1fff42eb3c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 44.877235
+      value: 47.175426
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb67e26a513937340a70f1fff42eb3c6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -223,6 +223,7 @@ MonoBehaviour:
   cameraObject: {fileID: 2718388424366605973}
   fan: {fileID: 0}
   Key: {fileID: 0}
+  End1: End1
 --- !u!143 &5574633732569268947
 CharacterController:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1
-  m_Radius: 1.3
+  m_Radius: 1.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

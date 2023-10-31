@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Body_Move : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class Body_Move : MonoBehaviour
 
     public static bool BodygetKey = false;
     public static bool BodygetMIMIKey = false;
+    public static float BodyGetCoin = 0f;
 
+    public string End1;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +94,7 @@ public class Body_Move : MonoBehaviour
         if (other.CompareTag("out"))
         {
             Debug.Log("End");
+            SceneManager.LoadScene(End1);
         }
         if (other.CompareTag("speedup"))
         {
@@ -104,7 +108,11 @@ public class Body_Move : MonoBehaviour
         }
         if (other.CompareTag("mimiout"))
         {
-            Debug.Log("MIMIEnd");
+            SceneManager.LoadScene("End2");
+        }
+        if (other.CompareTag("coin"))
+        {
+            BodyGetCoin += 1;
         }
     }
 
