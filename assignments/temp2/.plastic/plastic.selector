@@ -1,0 +1,4 @@
+repository "temp2@saikamatoi@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
