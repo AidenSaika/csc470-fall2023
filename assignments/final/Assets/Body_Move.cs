@@ -21,6 +21,8 @@ public class Body_Move : MonoBehaviour
     public static bool BodygetKey = false;
     public static bool BodygetMIMIKey = false;
     public static float BodyGetCoin = 0f;
+    public static bool KitchenTELE = false;
+    public static bool LivingTELE = false;
 
     public string End1;
     // Start is called before the first frame update
@@ -86,6 +88,11 @@ public class Body_Move : MonoBehaviour
         {
             accSpeed = 30f;
             Debug.Log("TTT");
+        }
+        if (other.CompareTag("Teleport1"))
+        {
+       
+            
         }
         if (other.CompareTag("key"))
         {

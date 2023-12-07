@@ -11,6 +11,8 @@ TagManager:
   - Mimi_key
   - mimiout
   - coin
+  - Teleport1
+  - Teleport2
   layers:
   - Default
   - TransparentFX

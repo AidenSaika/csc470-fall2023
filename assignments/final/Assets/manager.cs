@@ -38,6 +38,21 @@ public class GameManager : MonoBehaviour
     public TMP_Text GetKeyText;
     public TMP_Text GetSKeyText;
 
+    public static GameManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +97,7 @@ public class GameManager : MonoBehaviour
             FirstGenerate = false;
 
         }
-        
+
 
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -143,7 +158,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public void TeleportCurrentObject(Vector3 newPosition)
+    {
+        if (CurrentOBJ != null)
+        {
+            CurrentOBJ.transform.position = newPosition;
+        }
+    }
     GameObject generateBeginingHuman()
     {
         Vector3 pos = new Vector3(0, 5, 0);
