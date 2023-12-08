@@ -20,6 +20,7 @@ public class Body_Move : MonoBehaviour
 
     public static bool BodygetKey = false;
     public static bool BodygetMIMIKey = false;
+    public static bool BodygetOutKey = false;
     public static float BodyGetCoin = 0f;
     public static bool KitchenTELE = false;
     public static bool LivingTELE = false;
@@ -63,6 +64,12 @@ public class Body_Move : MonoBehaviour
 
         cc.Move(amountToMove * Time.deltaTime);
 
+        bool IsWalking = false;
+        if (amountToMove.magnitude > 0)
+        {
+            IsWalking = true;
+        }
+        animator.SetBool("walking", IsWalking);
 
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -89,10 +96,10 @@ public class Body_Move : MonoBehaviour
             accSpeed = 30f;
             Debug.Log("TTT");
         }
-        if (other.CompareTag("Teleport1"))
+        if (other.CompareTag("OutDoorKey"))
         {
-       
-            
+            BodygetOutKey = true;
+            print("outkey");
         }
         if (other.CompareTag("key"))
         {

@@ -13,6 +13,7 @@ TagManager:
   - coin
   - Teleport1
   - Teleport2
+  - OutDoorKey
   layers:
   - Default
   - TransparentFX

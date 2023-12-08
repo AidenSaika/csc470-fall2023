@@ -27,6 +27,7 @@ public class aircraft : MonoBehaviour
     public static bool AirgetKey = false;
     public static bool getSpeedUP = false;
     public static bool AirgetMIMIKey = false;
+    public static bool AirgetOutKey = false;
 
     public string End1;
 
@@ -139,6 +140,11 @@ public class aircraft : MonoBehaviour
         if (other.CompareTag("Mimi_key"))
         {
             AirgetMIMIKey = true;
+        }
+        if (other.CompareTag("OutDoorKey"))
+        {
+            AirgetOutKey = true;
+            print("outkey");
         }
         if (other.CompareTag("out"))
         {

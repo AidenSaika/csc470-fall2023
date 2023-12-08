@@ -131,12 +131,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Key);
             Destroy(Door);
-            if (!isOut)
-            {
-                TheOut();
-                isOut = !isOut;
-            }
-
         }
 
         if (aircraft.getSpeedUP)
