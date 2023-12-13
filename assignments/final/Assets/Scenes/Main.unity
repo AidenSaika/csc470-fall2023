@@ -22287,6 +22287,7 @@ MonoBehaviour:
   Gatesound: {fileID: 6828780688728934616, guid: 68d3a1d078e1adc4dac0c5eae528e38f, type: 3}
   Kitchensound: {fileID: 6227166531397111697, guid: 5e450d7913aa0f745af6582cb046dc6c, type: 3}
   sgatesound: {fileID: 4505787746005900390, guid: 9b01a4bdf6a0dfe4aad7c34e4f04b3dd, type: 3}
+  OUTKEYMENTION: {fileID: 8137598967746852816, guid: 7055407ef9561974098391c1542e3953, type: 3}
   GCountSPEEDup: 2
   CoinCllect: 0
   CoinText: {fileID: 735879829}
@@ -22294,6 +22295,7 @@ MonoBehaviour:
   GetKeyText: {fileID: 614124278}
   GetSKeyText: {fileID: 1919720166}
   OutKeyGText: {fileID: 163506178}
+  delay: 5
 --- !u!1 &1636812708
 GameObject:
   m_ObjectHideFlags: 0

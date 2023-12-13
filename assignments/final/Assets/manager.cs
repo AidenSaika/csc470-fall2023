@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject Gatesound;
     public GameObject Kitchensound;
     public GameObject sgatesound;
+    public GameObject OUTKEYMENTION;
 
     bool isGatesound = true;
     bool isKitchensound = true;
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text OutKeyGText;
 
     public static GameManager Instance;
+
+    public float delay = 4f;
 
     void Awake()
     {
@@ -117,6 +120,8 @@ public class GameManager : MonoBehaviour
                 OutG();
                 OutKG = false;
                 Goutkey = 1;
+                GameObject canvas = Instantiate(OUTKEYMENTION);
+                Destroy(canvas, delay);
             }
         }
 

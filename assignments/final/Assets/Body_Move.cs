@@ -10,7 +10,7 @@ public class Body_Move : MonoBehaviour
     public GameObject fan;
 
     float fowardSpeed = 10f;
-    float RotationSpeed = 70f;
+    float RotationSpeed = 80f;
     float jumpForce = 15f;
     float gravityModifier = 2.5f;
     float yVelocity = 0;
