@@ -15,6 +15,8 @@ public class Body_Move : MonoBehaviour
     float gravityModifier = 2.5f;
     float yVelocity = 0;
     bool doublejump = true;
+    float TTCoin;
+
     float accSpeed = 0f;
     public GameObject Key;
 
@@ -24,17 +26,24 @@ public class Body_Move : MonoBehaviour
     public static float BodyGetCoin = 0f;
     public static bool KitchenTELE = false;
     public static bool LivingTELE = false;
+    public static bool BOutKeyG = false;
+
+    private Animator animator;
+
+    public GameObject movement;
 
     public string End1;
     // Start is called before the first frame update
     void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
+        animator  = movement.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CoinGET();
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
@@ -64,12 +73,11 @@ public class Body_Move : MonoBehaviour
 
         cc.Move(amountToMove * Time.deltaTime);
 
-        bool IsWalking = false;
-        if (amountToMove.magnitude > 0)
+        if ((Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.W))&&cc.isGrounded)
         {
-            IsWalking = true;
+            animator.Play("Salt_move");
+           
         }
-        animator.SetBool("walking", IsWalking);
 
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -85,9 +93,13 @@ public class Body_Move : MonoBehaviour
 
         accSpeed -= 10 * Time.deltaTime;
         accSpeed = Mathf.Max(0, accSpeed);
-      
 
 
+
+    }
+    void CoinGET()
+    {
+        TTCoin = aircraft.AirGetCoin + BodyGetCoin;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -96,6 +108,15 @@ public class Body_Move : MonoBehaviour
             accSpeed = 30f;
             Debug.Log("TTT");
         }
+        if (other.CompareTag("Bank"))
+        {
+            if (TTCoin>=30)
+            {
+                BOutKeyG = true;
+                print("outkey");
+            }
+        }
+
         if (other.CompareTag("OutDoorKey"))
         {
             BodygetOutKey = true;

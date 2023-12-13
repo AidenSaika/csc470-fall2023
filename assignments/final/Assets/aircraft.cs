@@ -13,6 +13,7 @@ public class aircraft : MonoBehaviour
     float gravityModifier = 0.05f;
     float yVelocity = 0;
     float Thespeed;
+    float TTCoin;
     public static float CurrentRemain;
     public static float AirGetCoin;
 
@@ -28,6 +29,7 @@ public class aircraft : MonoBehaviour
     public static bool getSpeedUP = false;
     public static bool AirgetMIMIKey = false;
     public static bool AirgetOutKey = false;
+    public static bool AOutKeyG = false;
 
     public string End1;
 
@@ -48,6 +50,7 @@ public class aircraft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CoinGET();
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
@@ -126,12 +129,24 @@ public class aircraft : MonoBehaviour
 
 
     }
+    void CoinGET()
+    {
+        TTCoin = AirGetCoin + Body_Move.BodyGetCoin;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Trigger"))
         {
             forwardSpeed = 30f;
             Debug.Log("TTT");
+        }
+        if (other.CompareTag("Bank"))
+        {
+            if (TTCoin >= 30)
+            {
+                AOutKeyG = true;
+                print("outkey");
+            }
         }
         if (other.CompareTag("key"))
         {

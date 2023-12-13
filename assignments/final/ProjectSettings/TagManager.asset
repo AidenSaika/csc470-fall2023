@@ -14,6 +14,7 @@ TagManager:
   - Teleport1
   - Teleport2
   - OutDoorKey
+  - Bank
   layers:
   - Default
   - TransparentFX

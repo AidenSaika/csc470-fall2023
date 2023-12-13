@@ -16,20 +16,29 @@ public class GameManager : MonoBehaviour
     public GameObject MIMI_DOOR;
     public GameObject MIMI_OUT;
     public GameObject MIMI_KEY;
+    public GameObject OutKey; 
+    public GameObject Gatesound;
+    public GameObject Kitchensound;
+    public GameObject sgatesound;
+
+    bool isGatesound = true;
+    bool isKitchensound = true;
+    bool issgatesound = true;
 
     bool IsPlane = false;
     bool IsHuman = false;
     bool MoveChange = false;
     bool getKey = false;
     bool getmiKey = false;
-    bool isOut = false;
     bool FirstGenerate = true;
     bool isOutMI = false;
+    bool OutKG = true;
     public static bool GetBUTTON = false;
 
     public float GCountSPEEDup =0f;
     float CountShow = 0f;
-    float CoinCllect;
+    float Goutkey = 0;
+    public  float CoinCllect;
     float GetKeyCount = 0f;
     float GetSKeyCount = 0f;
 
@@ -37,6 +46,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text SpeedCount;
     public TMP_Text GetKeyText;
     public TMP_Text GetSKeyText;
+    public TMP_Text OutKeyGText;
 
     public static GameManager Instance;
 
@@ -81,6 +91,8 @@ public class GameManager : MonoBehaviour
 
         GetSKeyText.text = GetSKeyCount.ToString();
 
+        OutKeyGText.text = Goutkey.ToString();
+
         CountShow = GCountSPEEDup;
 
         SpeedCount.text = CountShow.ToString();
@@ -98,7 +110,24 @@ public class GameManager : MonoBehaviour
 
         }
 
+        if (Body_Move.BOutKeyG || aircraft.AOutKeyG)
+        {
+            if(OutKG)
+            {
+                OutG();
+                OutKG = false;
+                Goutkey = 1;
+            }
+        }
 
+        if (Body_Move.BodygetOutKey || aircraft.AirgetOutKey)
+        {
+            if (isGatesound)
+            {
+                TheGatesound();
+                isGatesound = false;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -112,7 +141,7 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(CurrentOBJ);
                 CurrentOBJ = generatePlane();
-                ;
+                
             }
         }
         if (!MoveChange && !IsHuman)
@@ -131,6 +160,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Key);
             Destroy(Door);
+            if (isKitchensound)
+            {
+                TheKitchensound();
+                isKitchensound = false;
+            }  
         }
 
         if (aircraft.getSpeedUP)
@@ -147,6 +181,11 @@ public class GameManager : MonoBehaviour
             {
                 TheMIMIOUT();
                 isOutMI = !isOutMI;
+            }
+            if (issgatesound)
+            {
+                Thesgatesound();
+                issgatesound = false;
             }
         }
 
@@ -192,6 +231,14 @@ public class GameManager : MonoBehaviour
         Key.transform.Rotate(Rotate);
         return Key;
     }
+    GameObject OutG()
+    {
+        Vector3 pos = new Vector3(21.99f, -15.19f, -246.51f);
+        OutKey = Instantiate(OutKey, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        OutKey.transform.Rotate(Rotate);
+        return OutKey;
+    }
 
     GameObject TheMIMIKEY()
     {
@@ -200,6 +247,31 @@ public class GameManager : MonoBehaviour
         Vector3 Rotate = new Vector3(0, 0, 0);
         MIMI_KEY.transform.Rotate(Rotate);
         return MIMI_KEY;
+    }
+
+    GameObject TheGatesound()
+    {
+        Vector3 pos = new Vector3(0, 0, 0);
+        Gatesound = Instantiate(Gatesound, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        Gatesound.transform.Rotate(Rotate);
+        return Gatesound;
+    }
+    GameObject TheKitchensound()
+    {
+        Vector3 pos = new Vector3(0, 0, 0);
+        Kitchensound = Instantiate(Kitchensound, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        Kitchensound.transform.Rotate(Rotate);
+        return Kitchensound;
+    }
+    GameObject Thesgatesound()
+    {
+        Vector3 pos = new Vector3(0, 0, 0);
+        sgatesound = Instantiate(sgatesound, pos, Quaternion.identity);
+        Vector3 Rotate = new Vector3(0, 0, 0);
+        sgatesound.transform.Rotate(Rotate);
+        return sgatesound;
     }
 
     GameObject TheDoor()
